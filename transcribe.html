@@ -1,0 +1,426 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<style type="text/css">
+label, input[type=radio], input[type=button] { cursor: pointer; }
+.blue { color: blue; }
+.red { color: red; }
+.trial { padding: 15px 10px; }
+.trial p, .trial table { padding-left: 50px; 
+  margin: 3px;
+   }
+.trial table { width: 400px; }
+.trial tr td { width: 50%; text-align: center; }
+.trial_number { float: left; font-size: 1.5em; font-weight: bold; display:inline-block; min-width:50px; }
+#unanswered { font-weight: bold; font-size: 2em; color: black; background-color: red; margin: 0 auto; width: 500px; border: black 1px solid; padding: 10px; display:none; }
+#answered { margin: 0 auto; width: 500px; border: black 1px solid; padding: 10px; display:none; }
+.slider ul { margin-left: 0; padding-left: 0; }
+.slider li { float: left; margin-left: 0; padding-left: 0; list-style-type: none; width: 20&#37;; }
+.slider li { color: #ccc; }
+.slider li.selected { color: black; }
+.likert li {
+  float: left;
+  list-style-type: none;
+}
+
+</style>
+
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<p>Survey Code: <span class="blue">COMPL3T3</span></p>
+
+<p class="red"><strong>PLEASE COMPLETE AT MOST ONE <span class="blue">COMPL3T3</span> SURVEY. YOU WILL NOT BE PAID FOR COMPLETING MORE THAN ONE SURVEY WITH THIS CODE.</strong></p>
+
+
+<crowd-form answer-format="flatten-objects">
+
+  <crowd-instructions link-text="View instructions" link-type="button">
+    <short-summary>
+      Please Label the following tweets. Label the tweets as pro-gun regulation or anti-gun regulation. Then, please indicate if the tweet expresses "self-defense," a "fear of gun regulation," or both. These are defined below. </br></br>
+
+      
+
+      <b><u>Pro-Gun Regulation:</b></u> A tweet is a Pro-Gun Regulation tweet if the person tweeting supports gun regulation as judged from their tweet. </br></br>
+
+
+      <b><u>Anti-Gun Regulation:</b></u> A tweet is an Anti-Gun Regulation tweet if the person tweeting is likely against gun regulation as judged from their tweet.</br></br>
+
+      <b><u>Self-Defense</u></b> 
+      A tweet is considered "self-defense" if the person tweeting is likely to believe in a dangerous world. A belief in a dangerous world is the belief that people need self-defense weapons due to the world's inherent danger. The person tweeting may express the need to protect themselves against the dangers of the world.
+      </br></br>
+
+      </br></br>
+      <b><u>Fear of Regulation</u></b> Fear of regulation means the tweet expresses the fear that guns will be hard to get in the future.
+      </br></br>
+    </short-summary>
+
+    <detailed-instructions>
+        <h2>Instructions:</h2>
+
+      Please Label the following tweets. Label the tweets as pro-gun regulation or anti-gun regulation. Then, please indicate if the tweet expresses "self-defense," a "fear of gun regulation," or both. These are defined below. </br></br>
+
+      
+
+      <b><u>Pro-Gun Regulation:</b></u> A tweet is a Pro-Gun Regulation tweet if the person tweeting supports gun regulation as judged from their tweet. </br></br>
+
+
+      <b><u>Anti-Gun Regulation:</b></u> A tweet is an Anti-Gun Regulation tweet if the person tweeting is likely against gun regulation as judged from their tweet.</br></br>
+
+      <b><u>Self-Defense</u></b> 
+      A tweet is considered "self-defense" if the person tweeting is likely to believe in a dangerous world. A belief in a dangerous world is the belief that people need self-defense weapons due to the world's inherent danger. The person tweeting may express the need to protect themselves against the dangers of the world.
+      </br></br>
+
+      </br></br>
+      <b><u>Fear of Regulation</u></b> Fear of regulation means the tweet expresses the fear that guns will be hard to get in the future.
+      </br></br>
+      </br></br>
+      </br></br>
+        The tweets in this survey are often incomplete. Many times they end with "...," and the full tweet isn't present. Try your best to apply the appropriate labels, but if you can't decide, label the tweet as "Can't Decide." </br></br>
+
+        
+        Label as many tweets on this page as you like. Hit submit to get the next page of tweets. You will get paid for every tweet. You will have a chance to label more tweets based on how correctly you label some of the randomly dispersed tweets throughout this survey. Report your id to mturk for payment. You will not get penalized for wrong answers.
+    </detailed-instructions>
+    
+    <%--- Anti-Gun/Pro Regulation --%>
+    <positive-example>
+
+      <p>@VRWCTexan Th Va Democrats are not very Smart...  "And ultimately, I'm not the governor, but the governor may have to nationalize the National Guard to enforce the law...\"\n\nNationalize the VA NATIONAL GUARD? Federalize? They support the Constitution, and 2nd Amendment!'</p>
+      <p>An example of a tweet that is <b>anti-gun regulation.</b> because the person who tweeted it is likely against the regulation or guns.</p>
+    </positive-example>
+
+    <negative-example>
+      <p>@VP Time, past time, to act on gun control. You pontificate. But you do nothing. </p>
+      <p>An example of a tweet that is <b>pro-gun regulation</b> because the person who tweeted it is requesting his elected representative to regulate guns.</p>
+    </negative-example>
+    
+    <%--- Fear of Gun Regulation --%>
+    <positive-example>
+      <p>@willchamberlain @senatemajldr I don’t need or want a subsidy. Handouts are for the weak. National CCW reciprocity, on the other hand, would take back #2A rights for many whose rights to carry are now infringed, strengthen deterrence, and piss off the leftist gun grabbers. @senatemajldr please act on this.</p>
+      <p> An example of a tweet that is <b>Fear of Regulation</b> because this tweet is <b>anti-gun regulation</b> and the person who tweeted this sounds affraid that guns will become more regulates.</p>
+    </positive-example>
+
+    <negative-example>
+      <p>when you are incapable of differentiating between a punch and a mass shooting </p>
+      <p>An example of a tweet that is <b>Not Fear of Regulation</b> because, although the person who tweeted it is likely <b>anti-gun regulation</b>, this tweet does not express the fear that guns will soon be regulated.</p>
+    </negative-example>
+    
+    <%--- Belief in a Dangerous World --%>
+    <positive-example>
+      <p>@winwithTrump45 @KamalaHarris They will need armed protection if them try to take our second amendment rights! Amer…</p>
+      <p>The author of this tweet expresses <b>self-defense</b> because the person who tweeted this is likely <b>anti-gun regulation</b> and the threat of violence suggests they hold this belief to be true.</p>
+    </positive-example>
+
+    <negative-example>
+      <p>What is an assault weapon?</p>
+      <p>The author of this tweet does not express a <b>self-defense</b> because, although this person is likely <b>anti-gun regulation</b>, this tweets is more concerned with the regulation of guns than it expresses any fear of violence.</p>
+    </negative-example>
+  </crowd-instructions>
+
+ <div id="requiredQuestions">
+ <p>  Please fill out these questions to continue with the survey.</p>
+
+ <p>  Are you a resident of the United States? 
+  <label for="resident" class='demographics'><input id="residentY" type="checkbox" name="resident" value="0"/> Yes</label>
+</p>
+
+ <p>  Are you a resident over 18 years of age? 
+  <label for="18" class='demographics'><input id="18Y" type="checkbox" name="18" value="0"/> Yes</label>
+</p>
+
+ <p>  I agree to participate in this study.
+  <label for="agree" class='demographics'><input id="agreeY" type="checkbox" name="agree" value="0"/> Yes</label>
+</p>
+</div>
+
+  <div class='trial'>
+    <p> ${tweet1}</p>
+    <crowd-checkbox id='1-anti-gun-regulation' name="1-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='1-fear-of-regulation-anti' name="1-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='1-self-defense-anti' name="1-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='1-categorize-pro-gun' name="1-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='1-fear-of-regulation-pro' name="1-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='1-self-defense-pro' name="1-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='1-cant-decide' name="1-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+
+  <div class='trial'>
+    <p> ${tweet2}</p>
+    <crowd-checkbox id='2-anti-gun-regulation' name="2-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='2-fear-of-regulation-anti' name="2-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='2-self-defense-anti' name="2-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='2-categorize-pro-gun' name="2-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='2-fear-of-regulation-pro' name="2-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='2-self-defense-pro' name="2-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='2-cant-decide' name="2-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+  
+
+  <div class='trial'>
+    <p> ${tweet3}</p>
+    <crowd-checkbox id='3-anti-gun-regulation' name="3-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='3-fear-of-regulation-anti' name="3-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='3-self-defense-anti' name="3-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='3-categorize-pro-gun' name="3-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='3-fear-of-regulation-pro' name="3-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='3-self-defense-pro' name="3-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='3-cant-decide' name="3-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+
+  <div class='trial'>
+    <p> ${tweet4}</p>
+    <crowd-checkbox id='4-anti-gun-regulation' name="4-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='4-fear-of-regulation-anti' name="4-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='4-self-defense-anti' name="4-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='4-categorize-pro-gun' name="4-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='4-fear-of-regulation-pro' name="4-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='4-self-defense-pro' name="4-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='4-cant-decide' name="4-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+
+  <div class='trial'>
+    <p> ${tweet5}</p>
+    <crowd-checkbox id='5-anti-gun-regulation' name="5-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='5-fear-of-regulation-anti' name="5-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='5-self-defense-anti' name="5-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='5-categorize-pro-gun' name="5-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='5-fear-of-regulation-pro' name="5-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='5-self-defense-pro' name="5-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='5-cant-decide' name="5-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+
+  <div class='trial'>
+    <p> ${tweet6}</p>
+    <crowd-checkbox id='6-anti-gun-regulation' name="6-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='6-fear-of-regulation-anti' name="6-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='6-self-defense-anti' name="6-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='6-categorize-pro-gun' name="6-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='6-fear-of-regulation-pro' name="6-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='6-self-defense-pro' name="6-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='6-cant-decide' name="6-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+
+  <div class='trial'>
+    <p> ${tweet7}</p>
+    <crowd-checkbox id='7-anti-gun-regulation' name="7-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='7-fear-of-regulation-anti' name="7-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='7-self-defense-anti' name="7-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='7-categorize-pro-gun' name="7-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='7-fear-of-regulation-pro' name="7-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='7-self-defense-pro' name="7-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='7-cant-decide' name="7-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+  
+
+  <div class='trial'>
+    <p> ${tweet8}</p>
+    <crowd-checkbox id='8-anti-gun-regulation' name="8-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='8-fear-of-regulation-anti' name="8-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='8-self-defense-anti' name="8-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='8-categorize-pro-gun' name="8-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='8-fear-of-regulation-pro' name="8-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='8-self-defense-pro' name="8-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='8-cant-decide' name="8-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+  
+
+  <div class='trial'>
+    <p> ${tweet9}</p>
+    <crowd-checkbox id='9-anti-gun-regulation' name="9-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='9-fear-of-regulation-anti' name="9-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='9-self-defense-anti' name="9-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='9-categorize-pro-gun' name="9-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='9-fear-of-regulation-pro' name="9-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='9-self-defense-pro' name="9-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='9-cant-decide' name="9-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+  <div class='trial'>
+    <p> ${kappa1}</p>
+    <crowd-checkbox id='10-anti-gun-regulation' name="10-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='10-fear-of-regulation-anti' name="10-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='10-self-defense-anti' name="10-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='10-categorize-pro-gun' name="10-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='10-fear-of-regulation-pro' name="10-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='10-self-defense-pro' name="10-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='10-cant-decide' name="10-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+
+  <div class='trial'>
+    <p> ${kappa2}</p>
+    <crowd-checkbox id='11-anti-gun-regulation' name="11-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='11-fear-of-regulation-anti' name="11-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='11-self-defense-anti' name="11-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='11-categorize-pro-gun' name="11-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='11-fear-of-regulation-pro' name="11-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='11-self-defense-pro' name="11-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='11-cant-decide' name="11-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+  
+  <div class='trial'>
+    <p> ${kappa3}</p>
+    <crowd-checkbox id='12-anti-gun-regulation' name="12-anti-gun-regulation" onclick='showStuffAnti(id, this); return false;'>Anti-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='12-fear-of-regulation-anti' name="12-fear-of-regulation-anti" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='12-self-defense-anti' name="12-self-defense-anti" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='12-categorize-pro-gun' name="12-pro-gun-regulation" onclick='showStuffPro(id, this); return false;' style="display:block; padding-top:10px;">Pro-Gun Regulation</crowd-checkbox>
+    <crowd-checkbox id='12-fear-of-regulation-pro' name="12-fear-of-regulation-pro" style="display:none; padding-left: 50px; padding-top:10px;">Fear of Regulation</crowd-checkbox>
+    <crowd-checkbox id='12-self-defense-pro' name="12-self-defense-pro" style="display:none; padding-left: 50px; padding-top:10px;">Self-Defense</crowd-checkbox>
+    <crowd-checkbox id='12-cant-decide' name="12-cant-decide" style="display:block; padding-top:10px;">Can't Decide/Neither</crowd-checkbox>
+  </div>
+ </br>
+
+ <div id='demographics'>
+
+ <p> Optional demographics questions that do not affect your payment. Fill this out to hide this section.</p>
+ <p>Are you a native speaker of English? <label for="englishY"><input id="englishY" type="radio" name="english" value="1" /> Yes</label> <label for="englishN"><input id="englishN" type="radio" name="english" value="0" /> No</label></p>
+
+ <p>Do you speak a language other than English? <label for="foreignlangY"><input id="foreignlangY" type="radio" name="foreignlang" value="1" /> Yes</label> <label for="foreignlangN"><input id="foreignlangN" type="radio" name="foreignlang" value="0" /> No</label></p>
+
+ <p> 
+  How do you identify your gender?
+  <label for="Gender"><input id="Male" type="radio" name="Gender" value="1" />Male</label>
+  <label for="Gender"><input id="Female" type="radio" name="Gender" value="2" />Female</label>
+  <label for="Genger"><input id="Neither" type="radio" name="Gender" value="3" />Neither</label>
+  <label for="Gender"><input id="NotSpecified" type="radio" name="Gender" value="4" />Prefer not to specify</label>
+</p>
+
+ <p> 
+  What is your age?
+  <label for="Age"><input id="Age" type="text" name="Age"/>Age</label>
+</p>
+
+
+<div>
+  
+  <p>How do you describe your political ideology.</p>
+  <div class="likert">
+    <ul>
+        <li>Liberal</li>
+        <li><input type="radio" name="ideology" value="1" /></li>
+        <li><input type="radio" name="ideology" value="2" /></li>
+        <li><input type="radio" name="ideology" value="3" /></li>
+        <li><input type="radio" name="ideology" value="4" /></li>
+        <li><input type="radio" name="ideology" value="5" /></li>
+       <li>Conservative</li>
+    </ul>
+  </div>
+</div>
+
+
+<div>
+  
+  <p>Are you a gun owner?</p>
+
+  <div class="likert" id='gunOwnership'>
+    <ul>
+        <li>Yes</li>
+        <li><input type="radio" name="ownsGun" value="1" /></li>
+        <li><input type="radio" name="ownsGun" value="2" /></li>
+       <li>No</li>
+    </ul>
+  </div>
+</div>
+
+
+
+<p>
+Any comments or concerns about this survery?
+<textarea name="comments" form="comments"></textarea>
+</p>
+
+
+
+
+
+<p>(Your answers to these questions do not affect the payment.)</p>
+
+</div>
+
+
+</crowd-form>
+
+<button class="button1" type="button">Retake Demographic Questions</button>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script>
+
+//*********(*
+// Warning: next for lines for localturn ONLY!
+//**********
+$(".button1").hide();
+$(".trial").hide();
+let elements = document.querySelectorAll('[data-test-id=crowd-submit]');
+for (let element of elements) {
+  element.style.display = "none";
+}
+function showStuffAnti(id) {
+    // Regex to exract the number from the id
+    var num = id.match(/\d+/)[0]
+    var option = document.getElementById(id);
+    var isNotChecked = !(option.checked);
+    if(isNotChecked){
+        document.getElementById(num + '-fear-of-regulation-anti').style.display = "block";
+        document.getElementById(num + '-self-defense-anti').style.display = "block";
+    } else {
+        document.getElementById(num + '-fear-of-regulation-anti').style.display = "none";
+        document.getElementById(num + '-self-defense-anti').style.display = "none";
+    }
+};
+
+function showStuffPro(id) {
+    // Regex to exract the number from the id
+    var num = id.match(/\d+/)[0]
+    var option = document.getElementById(id);
+    var isNotChecked = !(option.checked);
+    if(isNotChecked){
+        document.getElementById(num + '-fear-of-regulation-pro').style.display = "block";
+        document.getElementById(num + '-self-defense-pro').style.display = "block";
+    } else {
+        document.getElementById(num + '-fear-of-regulation-pro').style.display = "none";
+        document.getElementById(num + '-self-defense-pro').style.display = "none";
+    }
+};
+
+
+$(function(){
+ $("#gunOwnership").on('change', function(){
+   $("#demographics").hide();
+   $('.button1').show();
+ })
+});
+
+$('.demographics').on('input', function() {
+    var resident = $('input[name="resident"]:checked').val();
+    var eighteen = $('input[name="18"]:checked').val();
+    var agree = $('input[name="agree"]:checked').val();
+    if (resident && eighteen && agree){
+         $(".trial").show();
+         $('#requiredQuestions').hide();
+    }
+});
+
+$(".button1").click(function() {
+    if (!$('#demographics').is(':visible')){
+         $('#demographics').show();
+         $(".button1").html("Hide Demographic");
+    } else {
+         $('#demographics').hide();
+         $(".button1").html("Retake Demographic Questions");     
+    }
+
+});
+
+</script>
+
