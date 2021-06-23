@@ -1,14 +1,22 @@
 #!/usr/bin/env node
 "use strict";
+/**
+ * "Local Turk" server for running Mechanical Turk-like tasks locally.
+ *
+ * Usage:
+ *
+ *   localturk [--options] template.html tasks.csv outputs.csv
+ */
 var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -19,8 +27,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -39,13 +47,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __asyncValues = (this && this.__asyncIterator) || function (o) {
+var __asyncValues = (this && this.__asyncValues) || function (o) {
     if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-    var m = o[Symbol.asyncIterator];
-    return m ? m.call(o) : typeof __values === "function" ? __values(o) : o[Symbol.iterator]();
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
 };
-var _this = this;
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var bodyParser = require("body-parser");
 var errorhandler = require("errorhandler");
 var express = require("express");
@@ -55,9 +64,9 @@ var program = require("commander");
 var open = require("open");
 var Reservoir = require("reservoir");
 var _ = require("lodash");
-var csv = require("./csv.js");
-//var sample_template_1 = require("./sample-template");
-var utils = require("./utils.js");
+var csv = require("./csv");
+var sample_template_1 = require("./sample-template");
+var utils = require("./utils");
 program
     .version('2.1.1')
     .usage('[options] template.html tasks.csv outputs.csv')
@@ -147,8 +156,9 @@ function checkTaskOutput(task) {
     });
 }
 function getNextTask() {
+    var e_1, _a;
     return __awaiter(this, void 0, void 0, function () {
-        var completedTasks, sampler, nextTask, numTotal, _a, _b, task, e_1_1, e_1, _c;
+        var completedTasks, sampler, nextTask, numTotal, _b, _c, task, e_1_1;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0: return [4 /*yield*/, readCompletedTasks()];
@@ -158,21 +168,19 @@ function getNextTask() {
                     numTotal = 0;
                     _d.label = 2;
                 case 2:
-                    _d.trys.push([2, 8, 9, 14]);
-                    _a = __asyncValues(csv.readRowObjects(tasksFile));
+                    _d.trys.push([2, 7, 8, 13]);
+                    _b = __asyncValues(csv.readRowObjects(tasksFile));
                     _d.label = 3;
-                case 3: return [4 /*yield*/, _a.next()];
+                case 3: return [4 /*yield*/, _b.next()];
                 case 4:
-                    if (!(_b = _d.sent(), !_b.done)) return [3 /*break*/, 7];
-                    return [4 /*yield*/, _b.value];
-                case 5:
-                    task = _d.sent();
+                    if (!(_c = _d.sent(), !_c.done)) return [3 /*break*/, 6];
+                    task = _c.value;
                     numTotal++;
                     if (!sampler && nextTask) {
-                        return [3 /*break*/, 6]; // we're only counting at this point.
+                        return [3 /*break*/, 5]; // we're only counting at this point.
                     }
                     if (isTaskCompleted(utils.normalizeValues(task), completedTasks)) {
-                        return [3 /*break*/, 6];
+                        return [3 /*break*/, 5];
                     }
                     if (sampler) {
                         sampler.pushSome(task);
@@ -180,29 +188,29 @@ function getNextTask() {
                     else {
                         nextTask = task;
                     }
-                    _d.label = 6;
-                case 6: return [3 /*break*/, 3];
-                case 7: return [3 /*break*/, 14];
-                case 8:
+                    _d.label = 5;
+                case 5: return [3 /*break*/, 3];
+                case 6: return [3 /*break*/, 13];
+                case 7:
                     e_1_1 = _d.sent();
                     e_1 = { error: e_1_1 };
-                    return [3 /*break*/, 14];
+                    return [3 /*break*/, 13];
+                case 8:
+                    _d.trys.push([8, , 11, 12]);
+                    if (!(_c && !_c.done && (_a = _b["return"]))) return [3 /*break*/, 10];
+                    return [4 /*yield*/, _a.call(_b)];
                 case 9:
-                    _d.trys.push([9, , 12, 13]);
-                    if (!(_b && !_b.done && (_c = _a.return))) return [3 /*break*/, 11];
-                    return [4 /*yield*/, _c.call(_a)];
-                case 10:
                     _d.sent();
-                    _d.label = 11;
-                case 11: return [3 /*break*/, 13];
-                case 12:
+                    _d.label = 10;
+                case 10: return [3 /*break*/, 12];
+                case 11:
                     if (e_1) throw e_1.error;
                     return [7 /*endfinally*/];
-                case 13: return [7 /*endfinally*/];
-                case 14: return [2 /*return*/, {
+                case 12: return [7 /*endfinally*/];
+                case 13: return [2 /*return*/, {
                         task: sampler ? sampler[0] : nextTask,
                         numCompleted: _.size(completedTasks),
-                        numTotal: numTotal,
+                        numTotal: numTotal
                     }];
             }
         });
@@ -212,7 +220,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(errorhandler());
 app.use(express.static(path.resolve(staticDir)));
-app.get('/', utils.wrapPromise(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/', utils.wrapPromise(function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var nextTask, html;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -234,7 +242,7 @@ app.get('/', utils.wrapPromise(function (req, res) { return __awaiter(_this, voi
         }
     });
 }); }));
-app.post('/submit', utils.wrapPromise(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.post('/submit', utils.wrapPromise(function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var task;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -243,14 +251,14 @@ app.post('/submit', utils.wrapPromise(function (req, res) { return __awaiter(_th
                 return [4 /*yield*/, csv.appendRow(outputsFile, task)];
             case 1:
                 _a.sent();
-                //checkTaskOutput(task); // sets the "flash" variable with any errors.
+                checkTaskOutput(task); // sets the "flash" variable with any errors.
                 console.log('Saved ' + JSON.stringify(task));
                 res.redirect('/');
                 return [2 /*return*/];
         }
     });
 }); }));
-app.post('/delete-last', utils.wrapPromise(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.post('/delete-last', utils.wrapPromise(function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var row;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -264,16 +272,18 @@ app.post('/delete-last', utils.wrapPromise(function (req, res) { return __awaite
     });
 }); }));
 if (writeTemplate) {
-    (function () { return __awaiter(_this, void 0, void 0, function () {
+    (function () { return __awaiter(void 0, void 0, void 0, function () {
         var columns;
         return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0: return [4 /*yield*/, csv.readHeaders(tasksFile)];
                 case 1:
                     columns = _a.sent();
+                    console.log(sample_template_1.makeTemplate(columns));
                     return [2 /*return*/];
             }
         });
-    }); })().catch(function (e) {
+    }); })()["catch"](function (e) {
         console.error(e);
     });
 }
