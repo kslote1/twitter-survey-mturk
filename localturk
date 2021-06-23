@@ -78,7 +78,7 @@ if (writeTemplate) {
     args.push('');
 }
 var templateFile = args[0], tasksFile = args[1], outputsFile = args[2];
-var port = program.port || 4321;
+var port = program.port || 5000;
 // --static-dir is particularly useful for classify-images, where the template file is in a
 // temporary directory but the image files could be anywhere.
 var staticDir = program['staticDir'] || path.dirname(templateFile);
