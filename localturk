@@ -281,7 +281,7 @@ if (writeTemplate) {
 }
 else {
     app.listen(port);
-    var url = "http://localhost:" + port;
+    var url = "http://0.0.0.0:" + port;
     console.log('Running local turk on', url);
     open(url);
 }
