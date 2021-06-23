@@ -55,9 +55,9 @@ var program = require("commander");
 var open = require("open");
 var Reservoir = require("reservoir");
 var _ = require("lodash");
-var csv = require("./csv.js");
+var csv = require("./csv");
 //var sample_template_1 = require("./sample-template");
-var utils = require("./utils.js");
+var utils = require("./utils");
 program
     .version('2.1.1')
     .usage('[options] template.html tasks.csv outputs.csv')
@@ -267,9 +267,11 @@ if (writeTemplate) {
     (function () { return __awaiter(_this, void 0, void 0, function () {
         var columns;
         return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0: return [4 /*yield*/, csv.readHeaders(tasksFile)];
                 case 1:
                     columns = _a.sent();
+                    //console.log(sample_template_1.makeTemplate(columns));
                     return [2 /*return*/];
             }
         });
